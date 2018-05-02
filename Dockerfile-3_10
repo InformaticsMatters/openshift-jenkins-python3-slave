@@ -30,4 +30,9 @@ ENV LC_ALL=en_US.UTF-8
 # We're root at this stage of the script.
 # Back to the base-image user (we know this empirically).
 USER 1001
+
+# Adjust path for '--user' use of pip
+# where stuff gets installed in ${HOME}/.local/bin
+ENV PATH ${PATH}:${HOME}/.local/bin
+
 WORKDIR ${HOME}
