@@ -20,6 +20,10 @@ RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3.6 10
 
 RUN pip install --upgrade pip
 
+# Adjust path for ''--user' use of pip
+# where stuff gets installed in ${HOME}/.local/bin
+ENV PATH ${PATH}:/home/jenkins/.local/bin
+
 # To fix the error: -
 #       UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3
 #                in position 3516: ordinal not in range(128)
@@ -30,9 +34,4 @@ ENV LC_ALL=en_US.UTF-8
 # We're root at this stage of the script.
 # Back to the base-image user (we know this empirically).
 USER 1001
-
-# Adjust path for '--user' use of pip
-# where stuff gets installed in ${HOME}/.local/bin
-ENV PATH ${PATH}:${HOME}/.local/bin
-
 WORKDIR ${HOME}
