@@ -31,7 +31,4 @@ ENV PATH ${PATH}:/home/jenkins/.local/bin
 # We ned to set `LC_ALL` and allow utc-8.
 ENV LC_ALL=en_US.UTF-8
 
-# We're root at this stage of the script.
-# Back to the base-image user (we know this empirically).
-USER 1001
 WORKDIR ${HOME}

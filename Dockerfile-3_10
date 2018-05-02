@@ -16,7 +16,7 @@ RUN yum -y install \
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 1
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 
-RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3.6 10
+RUN alternatives --install /usr/bin/pip pip /usr/bin/pip3.6 10
 
 RUN pip install --upgrade pip
 
@@ -31,7 +31,4 @@ ENV PATH ${PATH}:/home/jenkins/.local/bin
 # We ned to set `LC_ALL` and allow utc-8.
 ENV LC_ALL=en_US.UTF-8
 
-# We're root at this stage of the script.
-# Back to the base-image user (we know this empirically).
-USER 1001
 WORKDIR ${HOME}
