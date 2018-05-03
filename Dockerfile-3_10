@@ -5,6 +5,10 @@
 FROM openshift/jenkins-slave-base-centos7@sha256:4a133527bab58df4ee0df9786a0fb9b2a4d2c422a9cc5077bd1bdf4bf867594a
 MAINTAINER Alan Christie (alanbchristie)
 
+# Install gcc
+RUN yum -y group install "Development Tools"
+
+# Install Python
 RUN yum -y install yum-utils
 RUN yum -y groupinstall development
 RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm
